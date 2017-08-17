@@ -30,6 +30,13 @@ postconf -e myhostname=$maildomain
 postconf -F '*/*/chroot = n'
 
 ############
+# set upstream proxy protocol
+############
+if [[ -n "$upstream_proxy_protocol" ]]; then
+  postconf -e smtpd_upstream_proxy_protocol=$upstream_proxy_protocol
+fi
+
+############
 # SASL SUPPORT FOR CLIENTS
 # The following options set parameters needed by Postfix to enable
 # Cyrus-SASL support for authentication of mail clients.
